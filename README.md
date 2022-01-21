@@ -1,2 +1,2 @@
 # sales-tax-in-ruby
-Create a different taxes pf products
+Create a different taxes of products
