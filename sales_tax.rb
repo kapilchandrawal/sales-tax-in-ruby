@@ -11,10 +11,33 @@ class SalesTax
 
   def initialize
     puts "Output 1:"
-    get_input INPUT1
+    input_meth INPUT1
     
   end
 
+  def get_input input_array
+    total_tax = 0
+    total_price = 0
+    input_array.each do |each_item|
+
+      i_item = each_item.split
+      qty = i_item[0].to_i
+      price = i_item[-1].to_f
+      p = each_item.split(" at ")
+      product = p[0].delete("/0-9/").strip
+      
+      tax = tax_cal price,product
+      total_tax += tax
+      tax_price = (price.to_f + tax)
+      total_price += tax_price
+      p "#{qty} #{product}: #{tax_price.round(2)}"
+    end
+    p "Sales Tax: #{total_tax.round(2)}"
+    p "Total: #{total_price.round(2)}"
+  end
+
+  def input_meth inp_arr
+  end
 end
 
 SalesTax.new
