@@ -15,10 +15,10 @@ class SalesTax
     
   end
 
-  def get_input input_array
+  def input_meth inp_arr
     total_tax = 0
     total_price = 0
-    input_array.each do |each_item|
+    inp_arr.each do |each_item|
 
       i_item = each_item.split
       qty = i_item[0].to_i
@@ -26,17 +26,35 @@ class SalesTax
       p = each_item.split(" at ")
       product = p[0].delete("/0-9/").strip
       
-      tax = tax_cal price,product
+      tax = calculate_tax price,product
       total_tax += tax
       tax_price = (price.to_f + tax)
       total_price += tax_price
       p "#{qty} #{product}: #{tax_price.round(2)}"
+
     end
+
     p "Sales Tax: #{total_tax.round(2)}"
     p "Total: #{total_price.round(2)}"
+
   end
 
-  def input_meth inp_arr
+  def calculate_tax price,product
+    tax_excluded = []
+    a_product = product.split(" ")
+    tax_excluded = a_product & EXEMPT
+
+    if product.include?('imported') && tax_excluded.count != 1
+      tax = price.to_f * ALL_TAX
+    elsif product.include?('imported') && tax_excluded.count == 1
+      tax = price.to_f * IMPORTED_TAX
+    elsif tax_excluded.count != 1
+      tax = price.to_f * SALES_TAX
+    else
+      tax = 0
+    end
+    
+    return tax
   end
 end
 
