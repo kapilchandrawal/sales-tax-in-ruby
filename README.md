@@ -1,2 +1,2 @@
 # sales-tax-in-ruby
-Create a different taxes of products
+Create a program for calculating different taxes of products
