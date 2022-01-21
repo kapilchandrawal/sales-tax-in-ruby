@@ -8,5 +8,13 @@ class SalesTax
   IMPORTED_TAX = 0.05
   SALES_TAX = 0.10
   ALL_TAX = 0.15
+
+  def initialize
+    puts "Output 1:"
+    get_input INPUT1
+    
+  end
+
 end
+
 SalesTax.new
