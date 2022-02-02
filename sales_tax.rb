@@ -12,6 +12,10 @@ class SalesTax
   def initialize
     puts "Output 1:"
     input_meth INPUT1
+    puts "Output 2:"
+    input_meth INPUT2
+    puts "Output 3:"
+    input_meth INPUT3
     
   end
 
